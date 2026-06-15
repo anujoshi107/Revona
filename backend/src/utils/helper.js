@@ -12,12 +12,19 @@ const RecurringIntervalEnum = TransactionModel.RecurringIntervalEnum;
 
 function calculateNextReportDate(lastSentDate) {
   const now = new Date();
-  const lastSent = lastSentDate || now;
 
-  const nextDate = startOfMonth(addMonths(lastSent, 1));
+  const lastSent = lastSentDate ? new Date(lastSentDate) : now;
+
+  let nextDate = startOfMonth(addMonths(lastSent, 1));
   nextDate.setHours(0, 0, 0, 0);
 
-  console.log(nextDate, 'nextDate');
+  // If calculated next date is still in the past,
+  // schedule next report from current month instead
+  if (nextDate <= now) {
+    nextDate = startOfMonth(addMonths(now, 1));
+    nextDate.setHours(0, 0, 0, 0);
+  }
+
   return nextDate;
 }
 
