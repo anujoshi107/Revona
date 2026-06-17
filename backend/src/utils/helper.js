@@ -1,16 +1,16 @@
-const {
+import {
   addDays,
   addMonths,
   addWeeks,
   addYears,
   startOfMonth,
-} = require('date-fns');
+} from 'date-fns';
 
 // Import the enum from the transaction model
-const TransactionModel = require('../models/transaction.model');
+import TransactionModel from '../models/transaction.model.js';
 const RecurringIntervalEnum = TransactionModel.RecurringIntervalEnum;
 
-function calculateNextReportDate(lastSentDate) {
+export function calculateNextReportDate(lastSentDate) {
   const now = new Date();
 
   const lastSent = lastSentDate ? new Date(lastSentDate) : now;
@@ -28,7 +28,7 @@ function calculateNextReportDate(lastSentDate) {
   return nextDate;
 }
 
-function calculateNextOccurrence(date, recurringInterval) {
+export function calculateNextOccurrence(date, recurringInterval) {
   const base = new Date(date);
   base.setHours(0, 0, 0, 0);
 
@@ -46,12 +46,7 @@ function calculateNextOccurrence(date, recurringInterval) {
   }
 }
 
-function capitalizeFirstLetter(string) {
+export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
-
-module.exports = {
-  calculateNextReportDate,
-  calculateNextOccurrence,
-  capitalizeFirstLetter,
-}
+

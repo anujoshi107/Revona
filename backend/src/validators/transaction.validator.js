@@ -50,6 +50,7 @@ export const baseTransactionSchema = z.object({
       PaymentMethodEnum.BANK_TRANSFER,
       PaymentMethodEnum.MOBILE_PAYMENT,
       PaymentMethodEnum.AUTO_DEBIT,
+      PaymentMethodEnum.UPI,
       PaymentMethodEnum.CASH,
       PaymentMethodEnum.OTHER,
     ])

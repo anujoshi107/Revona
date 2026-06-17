@@ -1,18 +1,18 @@
 // Line 1: Import the asyncHandler middleware using CommonJS require.
 // The original TypeScript used `import { asyncHandler } from "../middlewares/asyncHandler.middlerware";`
-const { asyncHandler } = require('../middlewares/asyncHandler.middleware');
+import { asyncHandler } from '../middlewares/asyncHandler.middleware.js';
 
 // Line 2: Import the two user service functions.
-const {
+import {
   findByIdUserService,
   updateUserService,
-} = require('../services/user.service');
+} from '../services/user.service.js';
 
 // Line 3: Import the HTTP status codes constant object.
-const { HTTPSTATUS } = require('../config/http.config');
+import { HTTPSTATUS } from '../config/http.config.js';
 
 // Line 4: Import the Zod update user schema (validator).
-const { updateUserSchema } = require('../validators/user.validator.js');
+import { updateUserSchema } from '../validators/user.validator.js';
 
 // Line 5: Define the getCurrentUserController.
 // It wraps an async function inside asyncHandler to catch errors automatically.
@@ -59,7 +59,7 @@ const updateUserController = asyncHandler(async (req, res) => {
 });
 
 // Line 15: Export both controller functions so they can be used in routes.
-module.exports = {
+export {
   getCurrentUserController,
   updateUserController,
 };

@@ -1,8 +1,8 @@
 // Line 1: Import the User model using CommonJS require
-const UserModel = require('../models/user.model');
+import UserModel from '../models/user.model.js';
 
 // Line 2: Import the NotFoundException custom error class
-const { NotFoundException } = require('../utils/app-error');
+import { NotFoundException } from '../utils/error.js';
 
 // Line 3: (Removed) The original imported a TypeScript type `UpdateUserType` – we don't need it in JS
 
@@ -42,7 +42,7 @@ const updateUserService = async (userId, body, profilePic) => {
 };
 
 // Line 14: Export both service functions
-module.exports = {
+export {
   findByIdUserService,
   updateUserService,
 };

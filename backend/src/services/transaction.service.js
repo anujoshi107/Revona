@@ -4,7 +4,7 @@ import TransactionModel, {
   TransactionTypeEnum,
 } from "../models/transaction.model.js";
 
-import { BadRequestException, NotFoundException } from "../utils/app-error.js";
+import { BadRequestException, NotFoundException } from "../utils/error.js";
 import { calculateNextOccurrence } from "../utils/helper.js";
 
 import { genAI, genAIModel } from "../config/google-ai.config.js";

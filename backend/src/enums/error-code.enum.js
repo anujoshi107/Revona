@@ -1,4 +1,4 @@
-const ErrorCodeEnum = {
+export const ErrorCodeEnum = {
   ACCESS_UNAUTHORIZED: 'ACCESS_UNAUTHORIZED',
   AUTH_USER_NOT_FOUND: 'AUTH_USER_NOT_FOUND',
   AUTH_EMAIL_ALREADY_EXISTS: 'AUTH_EMAIL_ALREADY_EXISTS',
@@ -12,5 +12,3 @@ const ErrorCodeEnum = {
   FILE_UPLOAD_ERROR: 'FILE_UPLOAD_ERROR',
   INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
 };
-
-module.exports = { ErrorCodeEnum };

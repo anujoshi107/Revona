@@ -1,4 +1,4 @@
-const HTTPSTATUS = {
+export const HTTPSTATUS = {
   OK: 200,
   CREATED: 201,
   ACCEPTED: 202,
@@ -17,5 +17,3 @@ const HTTPSTATUS = {
   SERVICE_UNAVAILABLE: 503,
   GATEWAY_TIMEOUT: 504,
 };
-
-module.exports = { HTTPSTATUS };

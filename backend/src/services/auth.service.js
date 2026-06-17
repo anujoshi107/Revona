@@ -1,9 +1,9 @@
-import User from "../models/user.model.js";
+import UserModel from "../models/user.model.js";
 import { NotFoundException, UnauthorizedException } from "../utils/error.js";
 import ReportSettingModel, {
   ReportFrequencyEnum,
 } from "../models/reportsettings.model.js";
-import { calulateNextReportDate } from "../utils/helper.js";
+import { calculateNextReportDate } from "../utils/helper.js";
 import { signJwtToken } from "../utils/jwt.js";
 
 export const registerService = async (body) => {
@@ -25,7 +25,7 @@ export const registerService = async (body) => {
     userId: newUser._id,
     frequency: ReportFrequencyEnum.MONTHLY,
     isEnabled: true,
-    nextReportDate: calulateNextReportDate(),
+    nextReportDate: calculateNextReportDate(),
     lastSentDate: null,
   });
 

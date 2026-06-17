@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Replaces the enum with a plain object
-const ReportFrequencyEnum = {
+export const ReportFrequencyEnum = {
   MONTHLY: 'MONTHLY',
 };
 
@@ -35,4 +35,4 @@ const reportSettingSchema = new mongoose.Schema(
 
 const ReportSettingModel = mongoose.model('ReportSetting', reportSettingSchema);
 
-module.exports = ReportSettingModel;
+export default ReportSettingModel;

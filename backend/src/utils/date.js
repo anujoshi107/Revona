@@ -1,4 +1,4 @@
-const {
+import {
   endOfDay,
   endOfMonth,
   endOfYear,
@@ -7,10 +7,10 @@ const {
   subDays,
   subMonths,
   subYears,
-} = require('date-fns');
-const { DateRangeEnum } = require('../enums/date-range.enum');
+} from 'date-fns';
+import { DateRangeEnum } from '../enums/date-range.enum.js';
 
-const getDateRange = (preset, customFrom, customTo) => {
+export const getDateRange = (preset, customFrom, customTo) => {
   // If custom dates are provided, use them directly
   if (customFrom && customTo) {
     return {
@@ -79,5 +79,4 @@ const getDateRange = (preset, customFrom, customTo) => {
       return last30Days;
   }
 };
-
-module.exports = { getDateRange };
+

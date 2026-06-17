@@ -2,7 +2,7 @@
 
 // Line 2: Define the asyncHandler function.
 // It takes a single argument `controller` (the async route handler function).
-const asyncHandler = (controller) =>
+export const asyncHandler = (controller) =>
   // Line 3: It returns a new async function that Express will call with (req, res, next).
   async (req, res, next) => {
     try {
@@ -13,6 +13,3 @@ const asyncHandler = (controller) =>
       next(error);
     }
   };
-
-// Line 6: Export the asyncHandler for use in routes/controllers.
-module.exports = { asyncHandler };

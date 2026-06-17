@@ -1,4 +1,4 @@
-const DateRangeEnum = {
+export const DateRangeEnum = {
   LAST_30_DAYS: '30days',
   LAST_MONTH: 'lastMonth',
   LAST_3_MONTHS: 'last3Months',
@@ -8,5 +8,3 @@ const DateRangeEnum = {
   ALL_TIME: 'allTime',
   CUSTOM: 'custom',
 };
-
-module.exports = { DateRangeEnum };

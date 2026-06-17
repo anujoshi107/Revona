@@ -1,31 +1,32 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-const { convertToCents, convertToDollarUnit } = require('../utils/format-currency');
+import { convertToCents, convertToDollarUnit } from '../utils/format-currency.js';
 
 // Enums → plain objects
-const TransactionStatusEnum = {
+export const TransactionStatusEnum = {
   PENDING: 'PENDING',
   COMPLETED: 'COMPLETED',
   FAILED: 'FAILED',
 };
 
-const RecurringIntervalEnum = {
+export const RecurringIntervalEnum = {
   DAILY: 'DAILY',
   WEEKLY: 'WEEKLY',
   MONTHLY: 'MONTHLY',
   YEARLY: 'YEARLY',
 };
 
-const TransactionTypeEnum = {
+export const TransactionTypeEnum = {
   INCOME: 'INCOME',
   EXPENSE: 'EXPENSE',
 };
 
-const PaymentMethodEnum = {
+export const PaymentMethodEnum = {
   CARD: 'CARD',
   BANK_TRANSFER: 'BANK_TRANSFER',
   MOBILE_PAYMENT: 'MOBILE_PAYMENT',
   AUTO_DEBIT: 'AUTO_DEBIT',
+  UPI : 'UPI',
   CASH: 'CASH',
   OTHER: 'OTHER',
 };
@@ -105,5 +106,6 @@ const transactionSchema = new Schema(
 
 const TransactionModel = mongoose.model('Transaction', transactionSchema);
 
-module.exports = TransactionModel;
-module.exports.RecurringIntervalEnum = RecurringIntervalEnum;
+TransactionModel.RecurringIntervalEnum = RecurringIntervalEnum;
+
+export default TransactionModel;

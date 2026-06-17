@@ -15,8 +15,6 @@ import { convertToDollarUnit } from "../utils/format-currency.js";
 import { genAI, genAIModel } from "../config/google-ai.config.js";
 import { reportInsightPrompt } from "../utils/prompt.js";
 
-
-
 export const getAllReportsService = async (userId, pagination) => {
   const query = { userId };
 
@@ -156,18 +154,15 @@ export const generateReportService = async (userId, fromDate, toDate) => {
     },
   ]);
 
-  if (
-    !results?.length ||
-    (results[0]?.totalIncome === 0 && results[0]?.totalExpenses === 0)
-  ) {
-    return null;
-  }
-
   const {
     totalIncome = 0,
     totalExpenses = 0,
     categories = [],
   } = results[0] || {};
+
+  if (totalIncome === 0 && totalExpenses === 0) {
+    return null;
+  }
 
   console.log(results[0], "results");
 
@@ -198,8 +193,12 @@ export const generateReportService = async (userId, fromDate, toDate) => {
     periodLabel,
   });
 
-  return {
+  const reportData = {
+    userId,
     period: periodLabel,
+    fromDate,
+    toDate,
+    sentDate: new Date(),
     summary: {
       income: convertToDollarUnit(totalIncome),
       expenses: convertToDollarUnit(totalExpenses),
@@ -211,7 +210,13 @@ export const generateReportService = async (userId, fromDate, toDate) => {
         percent: cat.percentage,
       })),
     },
-    insights,
+    insights: Array.isArray(insights) ? insights : [],
+  };
+
+  const savedReport = await ReportModel.create(reportData);
+
+  return {
+    report: savedReport,
   };
 };
 
