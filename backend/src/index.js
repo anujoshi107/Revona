@@ -5,7 +5,7 @@ import passport from "passport";
 
 import { HTTPSTATUS } from "./config/http.config.js";
 import { errorHandler } from "./middlewares/errorHandler.middleware.js";
-import connectDatabase from "./config/database.config.js";
+import connectDatabase from "./config/db.js";
 
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
@@ -14,7 +14,7 @@ import reportRoutes from "./routes/report.route.js";
 import analyticsRoutes from "./routes/analytics.route.js";
 
 import { passportAuthenticateJwt } from "./config/passport.config.js";
-import { initializeCrons } from "./cron/index.js";
+// import { initializeCrons } from "./cron/index.js";
 
 const app = express();
 
@@ -51,9 +51,9 @@ const startServer = async () => {
   try {
     await connectDatabase();
 
-    if (process.env.NODE_ENV === "development") {
-      await initializeCrons();
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await initializeCrons();
+    // }
 
     app.listen(PORT, () => {
       console.log(
