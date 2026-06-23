@@ -1,0 +1,33 @@
+import { formatCurrency } from "../utils/format-currency.js";
+import { getReportEmailTemplate } from "./templates/report.template.js";
+import { sendEmail } from "./mailer.js";
+
+export const sendReportEmail = async (params) => {
+  const { email, username, report, frequency } = params;
+
+  const html = getReportEmailTemplate(
+    {
+      username,
+      ...report,
+    },
+    frequency
+  );
+
+  const text = `Your ${frequency} Financial Report (${report.period})
+Income: ${formatCurrency(report.totalIncome)}
+Expenses: ${formatCurrency(report.totalExpenses)}
+Balance: ${formatCurrency(report.availableBalance)}
+Savings Rate: ${Number(report.savingsRate).toFixed(2)}%
+
+${Array.isArray(report.insights) ? report.insights.join("\n") : ""}
+`;
+
+  console.log(text, "text mail");
+
+  return sendEmail({
+    to: email,
+    subject: `${frequency} Financial Report - ${report.period}`,
+    text,
+    html,
+  });
+};
