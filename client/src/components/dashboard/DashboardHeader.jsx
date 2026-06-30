@@ -113,11 +113,10 @@ export default function DashboardHeader() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    isActive
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
                       ? 'text-white bg-slate-800/60 border border-slate-700/50'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900/40'
-                  }`}
+                    }`}
                 >
                   <Icon className={`h-4 w-4 ${isActive ? 'text-blue-400' : 'text-slate-500'}`} />
                   {link.name}
@@ -200,11 +199,10 @@ export default function DashboardHeader() {
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex w-full items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors cursor-pointer ${
-                    isActive
+                  className={`flex w-full items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors cursor-pointer ${isActive
                       ? 'text-white bg-slate-900 border border-slate-800'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900/50'
-                  }`}
+                    }`}
                 >
                   <Icon className={`h-5 w-5 ${isActive ? 'text-blue-400' : 'text-slate-450'}`} />
                   {link.name}

@@ -39,6 +39,9 @@ export const getAllTransactionController = asyncHandler(async (req, res) => {
     keyword: req.query.keyword || undefined,
     type: req.query.type || undefined,
     recurringStatus: req.query.recurringStatus || undefined,
+    preset: req.query.preset || undefined,
+    from: req.query.from || undefined,
+    to: req.query.to || undefined,
   };
 
   const pagination = {

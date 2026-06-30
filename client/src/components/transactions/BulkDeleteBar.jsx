@@ -10,7 +10,7 @@ export default function BulkDeleteBar({
     if (selectedCount === 0) return null;
 
     return (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900 border border-blue-500/20 shadow-2xl rounded-2xl px-6 py-4 flex items-center gap-6 animate-slideIn backdrop-blur-xl">
+        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-[999] bg-slate-900 border border-blue-500/20 shadow-2xl rounded-2xl px-6 py-4 flex items-center gap-6 animate-slideIn backdrop-blur-xl">
             <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
 

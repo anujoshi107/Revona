@@ -324,6 +324,8 @@ export const chartAnalyticsService = async (
         chartData: { $push: "$$ROOT" },
         totalIncomeCount: { $sum: "$incomeCount" },
         totalExpenseCount: { $sum: "$expenseCount" },
+        totalIncomeAmount: { $sum: "$income" },
+        totalExpenseAmount: { $sum: "$expenses" },
       },
     },
 
@@ -333,6 +335,8 @@ export const chartAnalyticsService = async (
         chartData: 1,
         totalIncomeCount: 1,
         totalExpenseCount: 1,
+        totalIncomeAmount: 1,
+        totalExpenseAmount: 1,
       },
     },
   ]);
@@ -349,6 +353,8 @@ export const chartAnalyticsService = async (
     chartData: transformedData,
     totalIncomeCount: resultData.totalIncomeCount || 0,
     totalExpenseCount: resultData.totalExpenseCount || 0,
+    totalIncomeAmount: convertToDollarUnit(resultData.totalIncomeAmount || 0),
+    totalExpenseAmount: convertToDollarUnit(resultData.totalExpenseAmount || 0),
     preset: {
       ...range,
       value: rangeValue || DateRangeEnum.ALL_TIME,

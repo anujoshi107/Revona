@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('success');
-  
+
   // Dynamic metrics states
   const [statsData, setStatsData] = useState([]);
   const [chartData, setChartData] = useState([]);
@@ -36,7 +36,7 @@ export default function Dashboard() {
         ]);
 
         const summary = summaryRes.data.data || {};
-        
+
         const newStats = [
           {
             id: 'balance',
@@ -112,14 +112,14 @@ export default function Dashboard() {
   return (
     <DashboardLayout>
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 flex flex-col gap-8">
-        
+
         {/* Welcome Hero Component */}
-        <DashboardHero 
-          onAddTransaction={handleAddTransaction} 
-          selectedRange={preset} 
-          setSelectedRange={setPreset} 
+        <DashboardHero
+          onAddTransaction={handleAddTransaction}
+          selectedRange={preset}
+          setSelectedRange={setPreset}
         />
-        
+
         {/* 4 Stats Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {loading ? (
@@ -145,30 +145,30 @@ export default function Dashboard() {
             ))
           )}
         </div>
-        
+
         {/* Chart + Breakdown Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-2">
           <div className="lg:col-span-2">
-            <DashboardPlaceholderCard 
-              type="overview" 
-              data={chartData} 
-              loading={loading} 
-              extraData={extraChartData} 
+            <DashboardPlaceholderCard
+              type="overview"
+              data={chartData}
+              loading={loading}
+              extraData={extraChartData}
             />
           </div>
           <div className="lg:col-span-1">
-            <DashboardPlaceholderCard 
-              type="breakdown" 
-              data={breakdownData} 
-              loading={loading} 
+            <DashboardPlaceholderCard
+              type="breakdown"
+              data={breakdownData}
+              loading={loading}
             />
           </div>
         </div>
 
         {/* Recent Transactions List Section */}
-        <RecentTransactions 
-          transactions={recentTransactions} 
-          loading={loading} 
+        <RecentTransactions
+          transactions={recentTransactions}
+          loading={loading}
         />
 
       </div>
@@ -186,15 +186,12 @@ export default function Dashboard() {
 
       {/* SUCCESS/ERROR TOAST */}
       {showToast && (
-        <div className={`fixed bottom-6 right-6 z-50 bg-slate-900 border ${
-          toastType === 'success' ? 'border-emerald-500/30' : 'border-rose-500/30'
-        } shadow-2xl rounded-2xl p-4 flex items-center gap-3 animate-slideIn max-w-md text-left`}>
-          <div className={`p-1 ${
-            toastType === 'success' ? 'bg-emerald-500/10' : 'bg-rose-500/10'
-          } rounded-lg flex-shrink-0`}>
-            <CheckCircle2 className={`h-5 w-5 ${
-              toastType === 'success' ? 'text-emerald-400' : 'text-rose-400'
-            }`} />
+        <div className={`fixed bottom-6 right-6 z-50 bg-slate-900 border ${toastType === 'success' ? 'border-emerald-500/30' : 'border-rose-500/30'
+          } shadow-2xl rounded-2xl p-4 flex items-center gap-3 animate-slideIn max-w-md text-left`}>
+          <div className={`p-1 ${toastType === 'success' ? 'bg-emerald-500/10' : 'bg-rose-500/10'
+            } rounded-lg flex-shrink-0`}>
+            <CheckCircle2 className={`h-5 w-5 ${toastType === 'success' ? 'text-emerald-400' : 'text-rose-400'
+              }`} />
           </div>
           <div>
             <h4 className="text-sm font-bold text-white">
@@ -202,7 +199,7 @@ export default function Dashboard() {
             </h4>
             <p className="text-xs text-slate-400 mt-0.5">{toastMessage}</p>
           </div>
-          <button 
+          <button
             onClick={() => setShowToast(false)}
             className="text-slate-500 hover:text-white p-1 rounded-lg ml-auto cursor-pointer"
           >

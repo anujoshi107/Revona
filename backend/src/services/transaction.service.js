@@ -3,6 +3,7 @@ import axios from "axios";
 import TransactionModel, {
   TransactionTypeEnum,
 } from "../models/transaction.model.js";
+import { convertToCents } from "../utils/format-currency.js";
 
 import { BadRequestException, NotFoundException } from "../utils/error.js";
 import { calculateNextOccurrence } from "../utils/helper.js";
@@ -50,11 +51,23 @@ export const getAllTransactionService = async (
   filters,
   pagination
 ) => {
-  const { keyword, type, recurringStatus } = filters;
+  const { keyword, type, recurringStatus, preset, from, to } = filters;
 
   const filterConditions = {
     userId,
   };
+
+  // Add Date Range Filter
+  if (preset || (from && to)) {
+    const { getDateRange } = await import("../utils/date.js");
+    const range = getDateRange(preset, from ? new Date(from) : undefined, to ? new Date(to) : undefined);
+    if (range.from && range.to) {
+      filterConditions.date = {
+        $gte: range.from,
+        $lte: range.to,
+      };
+    }
+  }
 
   if (keyword) {
     filterConditions.$or = [
@@ -195,6 +208,8 @@ export const bulkTransactionService = async (userId, transactions) => {
       document: {
         ...tx,
         userId,
+        // bulkWrite bypasses Mongoose setters, so manually convert amount to cents
+        amount: convertToCents(Number(tx.amount)),
         isRecurring: false,
         nextRecurringDate: null,
         recurringInterval: null,
