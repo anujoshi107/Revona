@@ -40,6 +40,7 @@ export default function DashboardHeader() {
   const activeLink = (() => {
     if (location.pathname === '/dashboard') return 'Overview';
     if (location.pathname === '/transactions') return 'Transactions';
+    if (location.pathname === '/reports') return 'Reports';
     return 'Overview';
   })();
 
@@ -73,7 +74,7 @@ export default function DashboardHeader() {
   const navLinks = [
     { name: 'Overview', icon: LayoutDashboard, path: '/dashboard' },
     { name: 'Transactions', icon: ArrowRightLeft, path: '/transactions' },
-    { name: 'Reports', icon: BarChart3, path: '#' },
+    { name: 'Reports', icon: BarChart3, path: '/reports' },
     { name: 'Settings', icon: Settings, path: '#' },
   ];
 

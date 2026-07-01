@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Reports from './pages/Reports';
 
 // Simple Route Protection wrapper
 const ProtectedRoute = ({ children }) => {
@@ -39,6 +40,16 @@ function App() {
           } 
         />
         
+        {/* Reports Route */}
+        <Route 
+          path="/reports" 
+          element={
+            <ProtectedRoute>
+              <Reports />
+            </ProtectedRoute>
+          } 
+        />
+
         {/* Redirect root and any other unmatched route to /login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

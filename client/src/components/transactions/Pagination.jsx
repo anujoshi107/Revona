@@ -7,6 +7,7 @@ export default function Pagination({
     totalPages,
     totalCount,
     onPageChange,
+    itemName = "transactions",
 }) {
     // Don't show pagination if there is only one page
     if (totalPages <= 1) return null;
@@ -18,7 +19,7 @@ export default function Pagination({
                 Showing page{" "}
                 <strong className="text-slate-300">{page}</strong> of{" "}
                 <strong className="text-slate-300">{totalPages}</strong> (
-                {totalCount} total transactions)
+                {totalCount} total {itemName})
             </span>
 
             {/* Right Side */}
